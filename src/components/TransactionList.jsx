@@ -17,10 +17,9 @@ function TransactionList({
                 transactions.map((item, index) => (
 
                     <div
-                       key={index}
-                       className="transaction"
->
-
+                        key={item._id}
+                        className="transaction"
+                    >
 
                         <h3>{item.title}</h3>
 
@@ -28,16 +27,19 @@ function TransactionList({
 
                         <p>Type: {item.type}</p>
 
+
                         <button
-                            onClick={() => editTransaction(index)}
+                            onClick={() => editTransaction(item)}
                         >
                             Edit
                         </button>
 
+
                         {" "}
 
+
                         <button
-                            onClick={() => deleteTransaction(index)}
+                            onClick={() => deleteTransaction(item._id)}
                         >
                             Delete
                         </button>

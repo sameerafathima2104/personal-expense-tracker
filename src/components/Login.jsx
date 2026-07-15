@@ -1,34 +1,37 @@
-import { useState } from "react";
+import React from "react";
 
 function Login({ login }) {
 
-    const [name, setName] = useState("");
-
-    const handleLogin = () => {
-        if (name.trim() !== "") {
-            login();
-        } else {
-            alert("Please enter your name");
-        }
-    };
-
     return (
-        <div style={{ textAlign: "center", marginTop: "100px" }}>
+        <div className="login-page">
 
-            <h1>Personal Expense Tracker</h1>
+            <div className="login-card">
 
-            <input
-                type="text"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
+                <div className="logo">
+                    $
+                </div>
 
-            <br /><br />
+                <h1>Personal Expense Tracker</h1>
 
-            <button onClick={handleLogin}>
-                Login
-            </button>
+                <p className="tagline">
+                    Track your expenses. Take control of your money.
+                </p>
+
+                <input
+                    type="text"
+                    placeholder="Enter your name"
+                    id="username"
+                />
+
+                <button onClick={() => login()}>
+                    Login
+                </button>
+
+                <p className="small-text">
+                    Start managing your finances smarter!
+                </p>
+
+            </div>
 
         </div>
     );
