@@ -2,10 +2,11 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
+
 const connectDB = require("./config/db");
 
 const transactionRoutes = require("./routes/transactionRoutes");
-
+const authRoutes = require("./routes/authRoutes");
 const app = express();
 
 connectDB();
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/transactions", transactionRoutes);
+app.use("/api/auth", authRoutes);
 
 const PORT = 5000;
 
