@@ -8,21 +8,29 @@ function Dashboard() {
     const [editTransaction, setEditTransaction] = useState(null);
 
 
-    useEffect(() => {
+   useEffect(() => {
 
-        fetch("http://localhost:5000/api/transactions")
+    fetch("http://localhost:5000/api/transactions", {
 
-            .then((response) => response.json())
+        headers: {
 
-            .then((data) => {
-                setTransactions(data);
-            })
+            Authorization: `Bearer ${localStorage.getItem("token")}`
 
-            .catch((error) => {
-                console.error("Error fetching transactions:", error);
-            });
+        }
 
-    }, []);
+    })
+
+        .then((response) => response.json())
+
+        .then((data) => {
+            setTransactions(data);
+        })
+
+        .catch((error) => {
+            console.error("Error fetching transactions:", error);
+        });
+
+}, []);
 
 
     const addTransaction = async (transaction) => {
@@ -35,8 +43,12 @@ function Dashboard() {
                     method: "POST",
 
                     headers: {
-                        "Content-Type": "application/json"
-                    },
+
+    "Content-Type": "application/json",
+
+    Authorization: `Bearer ${localStorage.getItem("token")}`
+
+},
 
                     body: JSON.stringify(transaction)
                 }
@@ -68,7 +80,13 @@ function Dashboard() {
             await fetch(
                 `http://localhost:5000/api/transactions/${id}`,
                 {
-                    method: "DELETE"
+                method: "DELETE",
+
+headers: {
+
+    Authorization: `Bearer ${localStorage.getItem("token")}`
+
+}
                 }
             );
 
@@ -99,9 +117,13 @@ function Dashboard() {
                 {
                     method: "PUT",
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                   headers: {
+
+    "Content-Type": "application/json",
+
+    Authorization: `Bearer ${localStorage.getItem("token")}`
+
+},
 
                     body: JSON.stringify(updatedData)
                 }

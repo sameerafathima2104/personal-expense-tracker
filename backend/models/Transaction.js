@@ -16,6 +16,12 @@ const transactionSchema = new mongoose.Schema(
             type: String,
             enum: ["Income", "Expense"],
             required: true
+        },
+
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true
         }
     },
 
